@@ -1,10 +1,12 @@
 import json
 
+file_name = "hard_prompt_typing_result_onto_from_ontoEA_facal_augmentation_top3"
+
 
 def type_count():
     cnt_1 = {}
     cnt_2 = {}
-    with open("./fr_en_v1/hard_prompt_typing_result.json", 'r', encoding='utf8') as fr:
+    with open("./fr_en_v1/typing_res/{}.json".format(file_name), 'r', encoding='utf8') as fr:
         json_data = json.load(fr)
         for obj in json_data:
             if cnt_1.get(json_data[obj]) is None:
@@ -13,22 +15,6 @@ def type_count():
         cnt_1 = sorted(cnt_1.items(), key=lambda x: x[1], reverse=True)
     print(cnt_1)
     print(len(cnt_1))
-    # with open("./fr_en_v1/fr_typing_result.json", 'r', encoding='utf8') as fr:
-    #     json_data = json.load(fr)
-    #     for obj in json_data:
-    #         if cnt_1.get(json_data[obj]) is None:
-    #             cnt_1[json_data[obj]] = 1
-    #         cnt_1[json_data[obj]] = cnt_1[json_data[obj]] + 1
-    #     cnt_1 = sorted(cnt_1.items(), key=lambda x: x[1], reverse=True)
-    # print(cnt_1)
-    # with open("./fr_en_v1/en_typing_result.json", 'r', encoding='utf8') as fr:
-    #     json_data = json.load(fr)
-    #     for obj in json_data:
-    #         if cnt_2.get(json_data[obj]) is None:
-    #             cnt_2[json_data[obj]] = 1
-    #         cnt_2[json_data[obj]] = cnt_2[json_data[obj]] + 1
-    #     cnt_2 = sorted(cnt_2.items(), key=lambda x: x[1], reverse=True)
-    # print(cnt_2)
 
 
 def hit_compute():
@@ -36,15 +22,9 @@ def hit_compute():
         ret = []
         for line in fr:
             ret.append(line[:-1].split("\t"))
-    #     with open("./fr_en_v1/fr_typing_result.json", 'r', encoding='utf8') as fr:
-    #         tab = json.load(fr)
-    #     with open("./fr_en_v1/en_typing_result.json", 'r', encoding='utf8') as fr:
-    #         json_data = json.load(fr)
-    #         for obj in json_data:
-    #             tab[obj] = json_data[obj]
-        with open("./fr_en_v1/hard_prompt_typing_result.json", 'r', encoding='utf8') as fr:
+        with open("./fr_en_v1/typing_res/{}.json".format(file_name), 'r', encoding='utf8') as fr:
             tab = json.load(fr)
-        print("total typing..",len(tab))
+        print("total typing..", len(tab))
         cls_1 = {}
         cls_2 = {}
         for obj in ret:
